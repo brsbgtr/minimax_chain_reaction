@@ -1,0 +1,38 @@
+# 🔗 Zincirleme Etki (Chain Reaction) - Minimax AI Projesi
+
+Bu proje, popüler tahta oyunu **Chain Reaction** (Zincirleme Etki) kurallarına benzer bir mantıkla geliştirilmiş, Pygame tabanlı bir uygulamadır. Oyun, bir insan oyuncu ile **Alpha-Beta Budamalı Minimax algoritması** kullanan bir Yapay Zeka (AI) arasında oynanır.
+
+## 🕹️ Oyunun Amacı
+
+Oyunun temel amacı, tahtaya pullar koyarak yatay, dikey veya çapraz olarak 4 veya daha fazla puldan oluşan zincirler oluşturmaktır. Her zincir oluşumunda puan kazanılır ve zinciri oluşturan tüm pullar tahtadan kaldırılır. Belirlenen puana (şu anki limit: **30**) ilk ulaşan oyuncu oyunu kazanır.
+
+## ⚙️ Teknik Detaylar
+
+### **Kullanılan Teknolojiler**
+
+* **Python:** Programlama dili
+* **Pygame:** Grafik ve oyun döngüsü yönetimi 
+* **Minimax Algoritması:** Yapay zeka kararları için temel algoritma
+* **Alpha-Beta Budaması:** Minimax aramasını hızlandırmak için optimizasyon tekniği
+
+### **Proje Yapısı**
+
+Proje, iki temel bileşen üzerine kurulmuştur:
+
+1.  **`OyunTahtasi` Sınıfı:** Oyunun kurallarını, tahta durumunu, hamle yapma (`hamle_yap`), zincirleme etkiyi kontrol etme (`zincirleme_etkiyi_kontrol_et`) ve geçerli hamleleri bulma gibi temel mekaniklerini yönetir.
+2.  **`MinimaxAgent` Sınıfı:**
+    * **`minimax_ara`:** AI için en iyi başlangıç hamlesini seçer.
+    * **`minimax`:** Belirlenen derinliğe kadar (Varsayılan: 2) oyun durumlarını özyinelemeli olarak simüle eder.
+    * **`degerlendirme_fonksiyonu`:** Mevcut tahta durumuna bir sayısal skor atar.
+        * **Kullanılan Heuristikler (Sezgisel Değerler):**
+            * **Skor Farkı:** AI ve İnsan oyuncusu arasındaki mevcut puan farkı.
+            * **Merkez Kontrolü:** Tahtanın merkez karelerini (3,3, 3,4, 4,3, 4,4) kontrol etmeye ek puan/ceza verilir (Merkezin kontrolü stratejik avantaj sağlar).
+
+## 🚀 Kurulum ve Çalıştırma
+
+### **Önkoşullar**
+
+Bu projeyi çalıştırmak için Python kurulu olmalıdır. Ek olarak Pygame kütüphanesine ihtiyacınız vardır.
+
+```bash
+pip install pygame
